@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% block content %}
+
+
+<!-- Start Popular Videos Area -->
+<section class="featured-videos-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>All Of My Training Videos</h2>
+        </div>
+
+        <div class="row">
+
+            {% for post in all_videos %}
+                {% if post.status == 'P' %}
+                <div class="col-lg-3 col-sm-6 col-md-6">
+                    <div class="single-featured-videos-box">
+                        <div class="videos-image">
+                            <img src="{{post.thumbnail.url}}" alt="image">
+                            <span class="duration">{{ post.duration }}</span>
+                            <span class="icon"><i class="flaticon-video-camera"></i></span>
+                            <a href="{{ post.video_link }}" class="link-btn popup-youtube"></a>
+                        </div>
+                        <div class="videos-content">
+                            <h3><a href="{{ post.video_link }}" class="popup-youtube">
+                                {{post.title}}
+                            </a></h3>
+                            <ul class="videos-meta">
+                                <li>{{ post.created|date:"F j, Y" }}</li>
+                                <li>{{ post.created|time:"g:i A" }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% empty %}
+                <h1>NO FEATURED VIDEOS FOUND.</h1>
+            {% endfor %}
+
+            
+        </div>
+    </div>
+</section>
+<!-- End Featured Videos Area -->
+
+{% endblock content %}

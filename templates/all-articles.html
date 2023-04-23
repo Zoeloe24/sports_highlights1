@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Start Blog Area -->
+<section id="blog" class="blog-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2>All Snap Shots</h2>
+        </div>
+
+        {% if all_articles %}
+        <div class="row">
+
+            {% for article in all_articles %}
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="single-blog-post">
+                    <div class="post-image">
+                        <a href="{% url 'articleDetails' article.id %}"><img src="{{article.thumbnail.url}}"
+                                alt="image"></a>
+                    </div>
+                    <div class="post-content">
+                        <a href="{% url 'articleDetails' article.id %}" class="category">{{article.category}}</a>
+                        <h3><a href="{% url 'articleDetails' article.id %}">
+                                {{article.title}}
+                            </a></h3>
+                        <ul class="post-meta">
+                            <!-- <li>By <a href="index.html#">Admin</a></li> -->
+                            <li>By {{article.author}}</li>
+                            <li>{{article.posted_on}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {% else %}
+                <h1>NO ARTICLES FOUND</h1>
+        {% endif %}
+    </div>
+</section>
+<!-- End Blog Area -->
+
+{% endblock content %}
