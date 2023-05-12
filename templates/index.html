@@ -141,6 +141,8 @@
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="single-featured-videos-box">
                         <div class="videos-image">
+                            {% if post.thumbnail %}
+                            {% endif %}
                             <img src="{{post.thumbnail.url}}" alt="image">
                             <span class="duration">{{ post.duration }}</span>
                             <span class="icon"><i class="flaticon-video-camera"></i></span>
